@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<import resource="applicationContext-mysql.xml" />
+	
+	<!-- 开启注解方式依赖注入 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.cy.otw.dubbo" />
+	<task:annotation-driven /> 
+	<task:executor id="executor" pool-size="100-10000" queue-capacity="50" />  
+	
+	<!-- 日期格式 -->
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+	
+	<!-- 增加事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="NOT_SUPPORTED" read-only="true" rollback-for="Exception" />
+			<tx:method name="query*" propagation="NOT_SUPPORTED" read-only="true" rollback-for="Exception" />
+			<tx:method name="find*" propagation="NOT_SUPPORTED" read-only="true" rollback-for="Exception" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="bind*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="unBind*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="back*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="batch*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="*" propagation="REQUIRED" read-only="true" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:advisor pointcut="execution(* com.cy.otw.dubbo.api.impl..*.*(..))"
+			advice-ref="txAdvice" />
+	</aop:config>
+
+</beans>

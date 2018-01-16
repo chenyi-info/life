@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       ">
+	
+	<dubbo:application name="dubbo-ontheway-service" />
+	<!-- 使用zookeeper注册中心暴露服务 -->
+	<dubbo:registry address="zookeeper://172.16.1.217:2181" />
+	<dubbo:provider delay="-1" timeout="3000" retries="0" threadpool="fixed" threads="500"/>
+	<!-- 商品分类 -->
+	<dubbo:service interface="com.cy.otw.dubbo.api.FriendApi" ref="friendApi" />
+	<bean id="friendApi" class="com.cy.otw.dubbo.api.impl.friend.FriendApiImpl" />
+	
+	
+</beans>
