@@ -1,0 +1,4 @@
+﻿.headChoose ul li a{background-image:none;background-color:#6e7074;display:block;width:12px;height:12px;-webkit-border-radius:999px;-moz-border-radius:999px;border-radius:999px;-webkit-transition:background 0.1s linear 0s;-moz-transition:background 0.1s linear 0s;-o-transition:background 0.1s linear 0s;transition:background 0.1s linear 0s;}
+.headChoose ul li a:hover{background-color:#ffffff;}
+.headChoose ul li.active a{background-color:#0087F7;}
+.headChoose ul li.active a:hover{background-color:#0087F7;}
