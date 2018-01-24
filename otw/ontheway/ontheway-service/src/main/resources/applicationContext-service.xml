@@ -34,6 +34,7 @@
 
 	<task:annotation-driven />
 	<import resource="applicationContext-dao.xml" />
+	<import resource="applicationContext-redis.xml" />
 	
 	<!-- Spring 异步 
 	<task:annotation-driven executor="gms-solr-executor" />  
@@ -57,4 +58,14 @@
 	</aop:config>
 
 	
+		<!--   引入多个配置文件 -->  
+	<bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>  
+                <value>classpath:redisconfig.properties</value> 
+                 <value>classpath:dbconfig.properties</value>   
+            </list>  
+        </property>  
+    </bean> 
 </beans>
