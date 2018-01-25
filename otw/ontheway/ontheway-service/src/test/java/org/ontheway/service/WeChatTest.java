@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cy.otw.dao.friend.FriendDao;
 import com.cy.otw.service.wechat.WeChatService;
-import com.cy.otw.wechat.utils.WeChatKeyUtils;
+import com.cy.otw.wechat.utils.WeChatServiceUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations = {"classpath:/applicationContext-service.xml"})
@@ -21,7 +21,13 @@ public class WeChatTest {
 	
 	@Test
 	public void getAccessTokenTest(){
-		weChatService.createWeChantMenu();
+		try {
+			weChatService.deleteWeChantMenu();
+			System.out.println("");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("");
 	}
 

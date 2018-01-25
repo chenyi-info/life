@@ -64,6 +64,17 @@ public class RedisSlave {
 			}
 		});
 	}
+	
+	/**
+	 * 查看key的生存时间，秒为单位
+	 *
+	 * @param key
+	 * @return
+	 * @author chenyi_info@126.com
+	 */
+	public Long TTL(final String key) {
+		return redistemplate.getConnectionFactory().getConnection().ttl(key.getBytes());
+	}
 
 	/**
 	 * 通过key删除
