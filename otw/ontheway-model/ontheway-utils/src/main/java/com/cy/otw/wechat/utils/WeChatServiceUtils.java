@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import org.apache.http.entity.ContentType;
+
 import com.cy.otw.utils.HttpUtils;
 import com.google.gson.Gson;
 
@@ -65,9 +67,9 @@ public class WeChatServiceUtils {
 	 * @throws Exception
 	 * @author chenyi_info@126.com
 	 */
-	public static Map createMenu(String accessToken, Map<String, Object> map) throws Exception{
+	public static Map createMenu(String accessToken, String bodyData) throws Exception{
 		String sendURL = MessageFormat.format(weChatURLResource.getString("menu_create"), accessToken);
-		String resultInfo = HttpUtils.sendPost(sendURL, map);
+		String resultInfo = HttpUtils.sendPostBody(sendURL, bodyData, ContentType.APPLICATION_JSON);
 		return stringToMap(resultInfo);
 	}
 	

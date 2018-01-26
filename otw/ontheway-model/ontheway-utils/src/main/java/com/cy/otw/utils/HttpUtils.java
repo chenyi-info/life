@@ -357,6 +357,35 @@ public class HttpUtils {
         return result;
     }
     
+    /**
+     * 发送post body参数请求
+     * @param url
+     * @param bodyData
+     * @param charSet
+     * @return
+     * @throws Exception
+     * @author chenyi@dtds.com.cn
+     */
+    public static String sendPostBody(String url, String bodyData, ContentType charSet) throws Exception {
+    	CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpPost httppost = new HttpPost(url);
+        httppost.setEntity(new StringEntity(bodyData, charSet));
+        CloseableHttpResponse response = null;
+        try {
+            response = httpclient.execute(httppost);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        HttpEntity entity1 = response.getEntity();
+        String result = null;
+        try {
+            result = EntityUtils.toString(entity1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
 	public static String postContent(String url, Map<String, Object> formEntity, int soTimeout, int connectionTimeout) {
 		try {
 			HttpPost httpPost = new HttpPost(url);

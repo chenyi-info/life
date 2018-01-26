@@ -1,6 +1,6 @@
 ﻿$(function(){
 	var headImg = [];
-	headImg[0] = '/static/images/image01.jpg'
+	headImg[0] = '/static/images/DSC_2385.JPG'
 	headImg[1] = '/static/images/image02.jpg'
 	headImg[2] = '/static/images/image03.jpg'
 	headImg[3] = '/static/images/image04.jpg'
