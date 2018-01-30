@@ -3,6 +3,8 @@ package com.cy.otw.controller.wechat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cy.otw.service.friend.FriendService;
-import com.cy.otw.vo.FriendVo;
+import com.cy.otw.service.wechat.WeChatService;
 import com.cy.otw.wechat.utils.SignUtil;
+import com.google.gson.JsonObject;
 
 @Controller
 public class WeChatController {
 	
-	@Resource private FriendService friendService;
+	@Resource private WeChatService weChatService;
 	
 	@RequestMapping(value = "/wechat", method = RequestMethod.GET)
 	@ResponseBody
@@ -47,6 +49,18 @@ public class WeChatController {
             out.close();  
             out = null;  
         }  
+	}
+	
+	@RequestMapping(value = "/wechat/config", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,String> getWxConfig(HttpServletRequest request, HttpServletResponse response, String url){
+		Map<String,String> configMap = new HashMap<String, String>();
+        try {
+        	configMap = this.weChatService.getWxConfig(url);
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }
+        return configMap;
 	}
 
 }
