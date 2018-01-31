@@ -1,3 +1,7 @@
 ﻿ @import url('mobile/tsh.css?__inline');
  @import url('mobile/root.css?__inline');
  div.g-scrollview img{ width: auto; height: auto; max-width: 100%;  max-height: 100%; }
+ 
+.face-content{height:0px;z-index:1;position: absolute;left: 0px;top:0px;}
+.face-content label,.face-content span{color: #cbcbcb;}
+.face-content label{margin: 10px 10px 0 10px;}

@@ -33,6 +33,9 @@
 .friend-content .name{color:#56bdf3;margin:20px;text-align:left;font-weight:bold:font-size:18px;font-family:Microsoft Yahei;font-weight:bold:}
 .friend-content .describe{color:#56bdf3;font-weight:300;font-size:16;text-indent:32px;font-family:'Titillium Web', sans-serif;}
 
+.face-content{height:0px;z-index:1;position: absolute;left: 0px;top:0px;}
+.face-content label,.face-content span{color: #cbcbcb;}
+.face-content label{margin: 10px 10px 0 10px;}
 
 .webuploader-container {
 	position: relative;display: inline-block;

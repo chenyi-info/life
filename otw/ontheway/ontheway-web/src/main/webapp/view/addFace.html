@@ -7,6 +7,7 @@
 	<script type='text/javascript' src='/static/js/jquery-1.7.1.min.js' ></script>
 	<script type='text/javascript' src="/static/js/webuploader-0.1.5/webuploader.nolog.min.js"></script>
 	<script type='text/javascript' src='/static/js/jquery.flip.min.js'></script>
+	<script type='text/javascript' src='/static/js/mustache.min.js'></script>
 	<script type='text/javascript' src='/static/js/addFace.js'></script>
 </head>
 <body>
@@ -62,3 +63,10 @@
 	</div>
 </body>
 </html>
+<script type='text/html' id='face-detect-template'>
+<div class = 'face-content'>
+	<p class = 'item'><label>年龄:</label><span>{{age}}</span></p>
+	<p class = 'item'><label>性别:</label><span>{{gender}}</span></p>
+	<p class = 'item'><label>情绪:</label><span>{{emotion}}</span></p>
+</div>
+</script>

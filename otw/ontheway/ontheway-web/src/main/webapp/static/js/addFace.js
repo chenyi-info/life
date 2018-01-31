@@ -57,7 +57,7 @@
 			},
 			onUploadProgress: function(file, percentage) {},
 			onUploadSuccess: function(file, response) {
-				console.log(response.result);
+				showFaceDetect(response.result);
 				var ossImage = response.img;
 				$('.friend-head').css({'background-image':'url('+ossImage+')','background-repeat':'no-repeat','background-size':'100% 100%','-moz-background-size':'100% 100%'});
 				$('input[name=showImg]').val(ossImage);
@@ -111,6 +111,31 @@
 
 		});
 	};
+	
+	var genderEnum = {'Male':'男性', 'Female':'女性'}
+	var emotionEnum = {'anger':'愤怒', 'disgust':'厌恶', 'fear':'恐惧', 'happiness':'高兴', 'neutral':'平静', 'sadness':'伤心', 'surprise':'惊讶'}
+	
+	var getMaxEmotion = function(emotionData){
+		var score = 0;
+		var emotionKey = "";
+		for(var k in emotionData){
+			if(score <= emotionData[k]){
+				score = emotionData[k];
+				emotionKey = k;
+			}
+		}
+		return emotionEnum[emotionKey];
+	}
+	
+	var showFaceDetect = function(data){
+		var faceData = JSON.parse(data);
+		var dataModel = {}
+		dataModel.age = faceData.faces[0].attributes.age.value;
+		dataModel.gender = genderEnum[faceData.faces[0].attributes.gender.value];
+		dataModel.emotion = getMaxEmotion(faceData.faces[0].attributes.emotion);
+		$('div.main_right').append(Mustache.render($('#face-detect-template').html(), dataModel));
+		$("div.face-content").animate({height:"100%"});
+	}
 	
 	
 	var resizeBG = function(){

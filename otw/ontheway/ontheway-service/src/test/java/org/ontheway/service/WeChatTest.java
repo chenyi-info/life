@@ -18,7 +18,7 @@ public class WeChatTest {
 	@Test
 	public void getAccessTokenTest(){
 		try {
-			weChatService.getWxConfig("www.baidu.com");
+			weChatService.createWeChantMenu();
 			System.out.println("");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

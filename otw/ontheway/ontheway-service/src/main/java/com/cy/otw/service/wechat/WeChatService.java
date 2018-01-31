@@ -61,11 +61,6 @@ public class WeChatService {
 		JsonArray btnsArr = new JsonArray();
 		JsonObject btnObj = new JsonObject();
 		btnObj.addProperty("type", WxConsts.BUTTON_VIEW);
-		btnObj.addProperty("name", "这是哪个");
-		btnObj.addProperty("url", "https://chenyi.tsh365.cn/static/images/sj.mp4");
-		btnsArr.add(btnObj);
-		btnObj = new JsonObject();
-		btnObj.addProperty("type", WxConsts.BUTTON_VIEW);
 		btnObj.addProperty("name", "相机");
 		btnObj.addProperty("url", "https://chenyi.tsh365.cn/view/face.html");
 		btnsArr.add(btnObj);

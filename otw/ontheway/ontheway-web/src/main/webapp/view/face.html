@@ -11,6 +11,7 @@
 	<script type='text/javascript' src='/static/js/jquery-1.7.1.min.js' ></script>
 	<script type='text/javascript' src='/static/js/wechat/jweixin-1.2.0.js'></script>
 	<script type='text/javascript' src='/static/js/tsh.flexible.js'></script>
+	<script type='text/javascript' src='/static/js/mustache.min.js'></script>
 	<script type='text/javascript' src='/static/js/face.js'></script>
 </head>
 <body>
@@ -24,3 +25,10 @@
 	</section>
 </body>
 </html>
+<script type='text/html' id='face-detect-template'>
+<div class = 'face-content'>
+	<p class = 'item'><label>年龄:</label><span>{{age}}</span></p>
+	<p class = 'item'><label>性别:</label><span>{{gender}}</span></p>
+	<p class = 'item'><label>情绪:</label><span>{{emotion}}</span></p>
+</div>
+</script>
